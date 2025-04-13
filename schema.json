@@ -1,0 +1,72 @@
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "Lady Of Mercy Preparatory School",
+  "alternateName": "LOM School",
+  "url": "https://www.lomischool.org",
+  "logo": "https://www.lomischool.org/img/logo.jpg",
+  "sameAs": [
+    "https://www.facebook.com/ladyofmercyschool",
+    "https://www.instagram.com/ladyofmercyschool",
+    "https://www.linkedin.com/company/lady-of-mercy-school"
+  ],
+  "description": "Lady Of Mercy Preparatory School offers excellence in education with state-of-the-art facilities, certified teachers, and a 100% pass rate in Accra, Ghana.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Behind Just Here Sport, St. Johns",
+    "addressLocality": "Accra",
+    "addressRegion": "Greater Accra",
+    "postalCode": "00233",
+    "addressCountry": "Ghana"
+  },
+  "telephone": "+233541234567",
+  "email": "info@lomischool.org",
+  "foundingDate": "1995",
+  "numberOfEmployees": "96",
+  "areaServed": "Accra Metropolitan Area",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Educational Programs",
+    "itemListElement": [
+      {
+        "@type": "EducationalOccupationalProgram",
+        "name": "Primary Education",
+        "description": "Quality primary education focusing on foundational skills and character development",
+        "timeRequired": "P6Y"
+      },
+      {
+        "@type": "EducationalOccupationalProgram",
+        "name": "Junior High School",
+        "description": "Comprehensive junior high education preparing students for senior high school",
+        "timeRequired": "P3Y"
+      }
+    ]
+  },
+  "event": [
+    {
+      "@type": "EducationEvent",
+      "name": "30th Anniversary Celebration",
+      "startDate": "2025-05-15",
+      "location": {
+        "@type": "Place",
+        "name": "Lady Of Mercy School Campus",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Behind Just Here Sport, St. Johns",
+          "addressLocality": "Accra",
+          "addressRegion": "Greater Accra",
+          "addressCountry": "Ghana"
+        }
+      },
+      "description": "Celebrating 30 years of educational excellence at Lady Of Mercy Preparatory School"
+    }
+  ],
+  "alumni": {
+    "@type": "OrganizationRole",
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Lady Of Mercy Preparatory School"
+    },
+    "description": "Join our growing network of successful alumni who have gone on to excel in various fields globally"
+  }
+}
