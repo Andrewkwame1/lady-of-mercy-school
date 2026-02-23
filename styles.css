@@ -168,6 +168,8 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    object-position: center;
     background-size: cover;
     background-position: center;
     
@@ -2769,9 +2771,19 @@ button {
   .theme-toggle {
     width: 44px;
     height: 44px;
-    right: calc(12px + env(safe-area-inset-right));
-    bottom: calc(12px + env(safe-area-inset-bottom));
+    right: max(12px, env(safe-area-inset-right, 0px));
+    bottom: max(12px, env(safe-area-inset-bottom, 0px));
     z-index: 1100;
+    position: fixed;
+  }
+}
+
+@media (max-width: 576px) {
+  .theme-toggle {
+    width: 42px;
+    height: 42px;
+    right: max(10px, env(safe-area-inset-right, 0px));
+    bottom: max(10px, env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -4212,15 +4224,16 @@ button {
       }
     
       .testimonial-text {
-        font-size: 0.9rem;
+        font-size: clamp(0.9rem, 2.8vw, 1rem);
+        line-height: 1.5;
       }
 
       .parent-info h4 {
-        font-size: 1rem;
+        font-size: clamp(0.95rem, 2.6vw, 1rem);
       }
     
       .parent-info p {
-        font-size: 0.8rem;
+        font-size: clamp(0.78rem, 2.4vw, 0.85rem);
       }
     
       /* Hide horizontal scrollbar */
@@ -4747,7 +4760,7 @@ button {
 
   .testimonial-content {
     padding: 1rem;
-    min-height: 300px;
+    min-height: auto;
   }
 
   .parent-img {
@@ -4756,15 +4769,16 @@ button {
   }
 
   .testimonial-text {
-    font-size: 1rem;
+    font-size: clamp(0.88rem, 3.2vw, 1rem);
+    line-height: 1.5;
   }
 
   .parent-info h4 {
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 3vw, 1.05rem);
   }
 
   .parent-info p {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2.6vw, 0.9rem);
   }
 
   /* Responsive Design for videos section on gallery.html*/
