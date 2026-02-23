@@ -33,7 +33,14 @@ body {
     background: var(--background);
     color: var(--text);
     transition: var(--transition);
-    overflow-x: hidden;
+  overflow-x: hidden;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 /*All  Navbar Styles */
@@ -718,9 +725,9 @@ body {
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding: 0 5%;
+  padding: 80px 5% 0 5%;
   background: var(--gradient);
-  
+  margin-top: 0;
 }
 
 .hero-1::before {
@@ -734,14 +741,6 @@ body {
    url('453316953_462716633395069_4474470692078075685_n.jpg') center center/cover no-repeat;
    opacity: 0.1;
 }
-
-#particles-js {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
 .hero-content-1 {
   text-align: center;
   max-width: 800px;
@@ -766,22 +765,28 @@ body {
 /* Breadcrumb */
 .breadcrumb {
   background-color: var(--card-bg);
-  padding: 10px 0;
+  padding: 15px 5%;
+  border-bottom: 1px solid rgba(66, 153, 225, 0.1);
 }
 
 .breadcrumb-container {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .breadcrumb i{
   color: var(--secondary);
+  font-size: 0.8rem;
 }
 
 .breadcrumb a {
   color: var(--text);
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .breadcrumb a:hover {
@@ -790,6 +795,7 @@ body {
 
 .breadcrumb span {
   color: var(--primary);
+  font-weight: 500;
 }
 
 
@@ -837,7 +843,7 @@ body {
 }
 
 .principal-title {
-  font-size: 15px;
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--primary);
@@ -860,7 +866,7 @@ body {
 }
 
 .principal-content h2 {
-  font-size: 28px;
+  font-size: 2rem;
   margin-bottom: 20px;
   color: var(--text);
   line-height: 1.3;
@@ -879,7 +885,7 @@ body {
 
 .principal-content p {
   margin-bottom: 15px;
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 .principal-signature {
@@ -900,7 +906,7 @@ body {
 }
 
 .signature-position {
-  font-size: 13px;
+  font-size: 0.85rem;
   color: #777;
 }
 
@@ -1125,15 +1131,6 @@ body {
   opacity: 0.8;
 }
 
-.leaders-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-
-
 /* Testimonials Section For About.html, Facilities.html, gallery.html*/
 .testimonials-section {
   padding: 4rem 2rem;
@@ -1348,12 +1345,12 @@ body {
 }
 
 .scroll-container {
-  background: var(--card-bg); 
-  border-radius: 15px;
-  padding: 2rem;
+  background: transparent;
+  border-radius: 0;
+  padding: 2rem 0 4rem 0;
   overflow: hidden;
   position: relative;
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 
 .scroll-content {
@@ -1361,6 +1358,7 @@ body {
   gap: 2rem;
   overflow-x: auto;
   scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
   padding: 1rem;
@@ -1378,6 +1376,8 @@ body {
   border-radius: 12px;
   overflow: hidden;
   transition: var(--transition);
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 }
 
 .scroll-item:hover {
@@ -1412,19 +1412,19 @@ body {
 
 .scroll-buttons {
   position: absolute;
-  top: 50%;
+  bottom: -3.5rem;
   width: 100%;
-  transform: translateY(-50%);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 2rem;
   pointer-events: none;
   padding: 0 1rem;
   z-index: 10;
 }
 
 .scroll-btn {
-  width: 50px;
-  height: 50px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: var(--primary);
   border: none;
@@ -1435,6 +1435,7 @@ body {
   pointer-events: auto;
   transition: var(--transition);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 0;
 }
 
 .scroll-btn:hover {
@@ -1442,14 +1443,14 @@ body {
   transform: scale(1.1);
 }
 
+.scroll-btn i {
+  color: #fff;
+  font-size: 1rem;
+  z-index: 1;
+}
+
 .scroll-btn svg {
-  width: 24px;
-  height: 24px;
-  fill: none;
-  stroke: var(--secondary);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  display: none; /* hide svg arrows; use font icon */
 }
 
 .scroll-progress {
@@ -1760,7 +1761,6 @@ body {
 /* Add a subtle glow effect to the modal image */
 #modalImg {
   filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.1));
-  transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 #modalImg:hover {
@@ -1860,6 +1860,7 @@ body {
   border-radius: 8px;
   background: var(--card-bg);
   color: var(--text);
+  min-height: 44px; /* ensure good tap target height */
 }
 
 .search-box-1 button {
@@ -1994,21 +1995,6 @@ body {
   border-image: var(--gradient) 1;
 }
 
-/* Search Box Styling */
-.search-box {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.search-box input {
-  flex: 1;
-  padding: 0.8rem;
-  border: 2px solid rgba(66, 153, 225, 0.2);
-  border-radius: 8px;
-  background: var(--card-bg);
-  color: var(--text);
-}
-
 .search-box button {
   padding: 0.8rem;
   background: var(--gradient);
@@ -2017,7 +2003,11 @@ body {
   color: white;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  min-width: 45px;
+  min-width: 48px;
+  min-height: 44px; /* consistent touch size across devices */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-box button:hover {
@@ -2468,8 +2458,13 @@ transform: scale(0.95);
   left: -100%;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.2);
-  transition: all 0.4s ease-in-out;
+  background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+  );
+  transition: 0.5s;
   z-index: 1;
 }
 
@@ -2485,26 +2480,6 @@ transform: scale(0.95);
 .submit-button:active {
   transform: translateY(0);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-.submit-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent
-  );
-  transition: 0.5s;
-}
-
-.submit-button:hover::before {
-  left: 100%;
 }
 
 /* Form Status Message */
@@ -2568,22 +2543,6 @@ transform: scale(0.95);
   border-bottom: 2px solid var(--accent);
 }
 
-/* Button Styles */
-
-button {
-  background: var(--primary);
-  color: white;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: var(--secondary);
-}
-
 
 /* Footer */
 
@@ -2597,11 +2556,6 @@ button:hover {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
   margin-bottom: 3rem;
-}
-
-.footer-column h3 {
-  color: var(--primary);
-  margin-bottom: 1.5rem;
 }
 
   .footer-column {
@@ -2829,25 +2783,812 @@ button {
   100% { transform: translateY(0); }
 }
 
+/* Responsive Design for scroll buttons - tablet landscape */
+@media screen and (max-width: 900px) {
+  .scroll-container {
+    padding: 2rem 0 2rem 0;
+  }
+
+  .scroll-buttons {
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .scroll-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .scroll-btn i {
+    font-size: 0.95rem;
+  }
+}
+
+/* Responsive Design for scroll buttons - tablet portrait */
+@media screen and (max-width: 768px) {
+  .scroll-container {
+    padding: 2rem 0 1rem 0;
+  }
+
+  .scroll-buttons {
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 0.5rem;
+  }
+
+  .scroll-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .scroll-btn i {
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsive Design for scroll buttons - mobile landscape */
+@media screen and (max-width: 480px) {
+  .scroll-container {
+    padding: 2rem 0 0.5rem 0;
+  }
+
+  .scroll-buttons {
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 0.3rem;
+  }
+
+  .scroll-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .scroll-btn i {
+    font-size: 0.85rem;
+  }
+}
+
 
 /* Responsive Design */
+/* Global responsive typography */
+@media screen and (max-width: 1200px) {
+  body {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  h1, .section-title {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  /* Hero 1 Section Responsive Styles */
+  .hero-1 {
+    height: 50vh;
+    padding-top: 80px;
+  }
+
+  .hero-1 h1 {
+    font-size: 3.5rem;
+  }
+
+  .hero-1 p {
+    font-size: 1.1rem;
+  }
+
+  /* Form elements */
+  .form-group label {
+    font-size: 0.95rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.95rem;
+  }
+
+  .submit-button {
+    font-size: 1rem;
+  }
+
+  /* Button Responsive Styles */
+  button {
+    padding: 0.95rem 1.8rem;
+    font-size: 0.95rem;
+  }
+
+  /* Card Responsive Styles */
+  .news-card {
+    border-radius: 10px;
+  }
+
+  .n-card {
+    padding: 1.8rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .n-card h2 {
+    font-size: 1.7rem;
+  }
+
+  /* Icon Responsive Styles */
+  .facility-card .icon {
+    font-size: 4.5rem;
+  }
+
+  .contact-card .icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .contact-card .icon i {
+    font-size: 1.8rem;
+  }
+
+  /* Timeline text */
+  .timeline-content h3 {
+    font-size: 1.4rem;
+  }
+
+  /* Modal text */
+  #modalCaption {
+    font-size: 1rem;
+  }
+
+  #modalCounter {
+    font-size: 0.85rem;
+  }
+
+  /* Testimonials */
+  .testimonial-text {
+    font-size: 0.95rem;
+  }
+
+  .parent-info h4 {
+    font-size: 1rem;
+  }
+
+  /* Mode of Education Responsive Styles */
+  .mode-edu-text {
+    padding-right: 1.8rem;
+  }
+
+  .mode-edu-text p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.3rem;
+  }
+
+  .image-description {
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  body {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  h1, .section-title {
+    font-size: 1.9rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+  }
+
+  p {
+    font-size: 0.92rem;
+  }
+
+  /* Hero 1 Section Responsive Styles */
+  .hero-1 {
+    height: 50vh;
+    padding-top: 70px;
+  }
+
+  .hero-1 h1 {
+    font-size: 3rem;
+  }
+
+  .hero-1 p {
+    font-size: 1rem;
+  }
+
+  /* Form elements */
+  .form-group label {
+    font-size: 0.92rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.92rem;
+  }
+
+  .submit-button {
+    font-size: 0.98rem;
+  }
+
+  /* Button Responsive Styles */
+  button {
+    padding: 0.9rem 1.6rem;
+    font-size: 0.92rem;
+  }
+
+  /* Card Responsive Styles */
+  .news-card {
+    border-radius: 10px;
+  }
+
+  .n-card {
+    padding: 1.6rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .n-card h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Icon Responsive Styles */
+  .facility-card .icon {
+    font-size: 4rem;
+  }
+
+  .contact-card .icon {
+    width: 55px;
+    height: 55px;
+  }
+
+  .contact-card .icon i {
+    font-size: 1.6rem;
+  }
+
+  /* Timeline text */
+  .timeline-content h3 {
+    font-size: 1.3rem;
+  }
+
+  /* Modal text */
+  #modalCaption {
+    font-size: 0.95rem;
+  }
+
+  #modalCounter {
+    font-size: 0.8rem;
+  }
+
+  /* Testimonials */
+  .testimonial-text {
+    font-size: 0.9rem;
+  }
+
+  .parent-info h4 {
+    font-size: 0.95rem;
+  }
+
+  /* Mode of Education Responsive Styles */
+  .mode-edu-text {
+    padding-right: 1.6rem;
+  }
+
+  .mode-edu-text p {
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+  }
+
+  .image-description {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  h1, .section-title {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  .slide-title {
+    font-size: 1.5rem;
+  }
+
+  .slide-description {
+    font-size: 0.9rem;
+  }
+
+  .section {
+    padding: 3rem 5%;
+  }
+
+  /* Hero 1 Section Responsive Styles */
+  .hero-1 {
+    height: 45vh;
+    padding-top: 60px;
+  }
+
+  .hero-1 h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-1 p {
+    font-size: 0.95rem;
+  }
+
+  /* Form elements */
+  .form-group label {
+    font-size: 0.87rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.9rem;
+  }
+
+  .submit-button {
+    font-size: 0.95rem;
+  }
+
+  /* Mode of Education Responsive Styles */
+  .mode-edu-text {
+    padding-right: 1.4rem;
+  }
+
+  .mode-edu-text p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.1rem;
+  }
+
+  .image-description {
+    font-size: 0.85rem;
+  }
+
+  /* Button Responsive Styles */
+  button {
+    padding: 0.8rem 1.4rem;
+    font-size: 0.88rem;
+  }
+
+  /* Card Responsive Styles */
+  .news-card {
+    border-radius: 8px;
+  }
+
+  .n-card {
+    padding: 1.4rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .n-card h2 {
+    font-size: 1.3rem;
+  }
+
+  .facility-card {
+    padding: 1.5rem;
+  }
+
+  /* Icon Responsive Styles */
+  .facility-card .icon {
+    font-size: 3.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .contact-card .icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .contact-card .icon i {
+    font-size: 1.4rem;
+  }
+
+  .value-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  /* Timeline text */
+  .timeline-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .timeline-content p {
+    font-size: 0.9rem;
+  }
+
+  /* Modal text */
+  #modalCaption {
+    font-size: 0.9rem;
+  }
+
+  #modalCounter {
+    font-size: 0.75rem;
+  }
+
+  /* Testimonials */
+  .testimonial-text {
+    font-size: 0.9rem;
+  }
+
+  .parent-info h4 {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  body {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  h1, .section-title {
+    font-size: 1.3rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  h3 {
+    font-size: 0.95rem;
+  }
+
+  p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .slide-title {
+    font-size: 1.2rem;
+  }
+
+  .slide-description {
+    font-size: 0.8rem;
+  }
+
+  .section {
+    padding: 2.5rem 5%;
+  }
+
+  /* Hero 1 Section Responsive Styles */
+  .hero-1 {
+    height: 40vh;
+    padding-top: 50px;
+    min-height: 320px;
+  }
+
+  .hero-1 h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-1 p {
+    font-size: 0.85rem;
+  }
+
+  /* Form elements */
+  .form-group label {
+    font-size: 0.8rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.85rem;
+  }
+
+  .submit-button {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.2rem;
+  }
+
+  /* Mode of Education Responsive Styles */
+  .mode-edu-text {
+    padding-right: 1.2rem;
+  }
+
+  .mode-edu-text p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .image-description {
+    font-size: 0.8rem;
+  }
+
+  /* Button Responsive Styles */
+  button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.82rem;
+  }
+
+  /* Card Responsive Styles */
+  .news-card {
+    border-radius: 8px;
+  }
+
+  .n-card {
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .n-card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .n-card p {
+    margin-bottom: 0.8rem;
+  }
+
+  .news-card img {
+    height: 180px;
+  }
+
+  .facility-card {
+    padding: 1.2rem;
+  }
+
+  /* Icon Responsive Styles */
+  .facility-card .icon {
+    font-size: 2.8rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .contact-card .icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .contact-card .icon i {
+    font-size: 1.1rem;
+  }
+
+  .value-icon {
+    font-size: 2rem;
+    margin-bottom: 0.6rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  h1, .section-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  h3 {
+    font-size: 0.9rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .slide-title {
+    font-size: 1rem;
+  }
+
+  .slide-description {
+    font-size: 0.75rem;
+  }
+
+  .section {
+    padding: 2rem 5%;
+  }
+
+  /* Hero 1 Section Responsive Styles */
+  .hero-1 {
+    height: 35vh;
+    padding-top: 40px;
+    min-height: 280px;
+  }
+
+  .hero-1 h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-1 p {
+    font-size: 0.78rem;
+  }
+
+  /* Form elements */
+  .form-group label {
+    font-size: 0.75rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.8rem;
+  }
+
+  .submit-button {
+    font-size: 0.85rem;
+    padding: 0.65rem 1rem;
+  }
+
+  /* Mode of Education Responsive Styles */
+  .mode-edu-text {
+    padding-right: 1rem;
+  }
+
+  .mode-edu-text p {
+    font-size: 0.78rem;
+    line-height: 1.4;
+    margin-bottom: 0.8rem;
+  }
+
+  .image-description {
+    font-size: 0.75rem;
+  }
+
+  /* Button Responsive Styles */
+  button {
+    padding: 0.6rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  /* Card Responsive Styles */
+  .news-card {
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .n-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+  }
+
+  .n-card h2 {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .n-card p {
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+  }
+
+  .news-card img {
+    height: 160px;
+  }
+
+  .news-content {
+    padding: 1rem;
+  }
+
+  .news-content h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .facility-card {
+    padding: 1rem;
+  }
+
+  .facility-card h3 {
+    font-size: 0.95rem;
+  }
+
+  /* Icon Responsive Styles */
+  .facility-card .icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-card .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .contact-card .icon i {
+    font-size: 0.9rem;
+  }
+
+  .value-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Timeline text */
+  .timeline-content h3 {
+    font-size: 0.95rem;
+  }
+
+  .timeline-content p {
+    font-size: 0.75rem;
+  }
+
+  /* Modal text */
+  #modalCaption {
+    font-size: 0.8rem;
+  }
+
+  #modalCounter {
+    font-size: 0.65rem;
+  }
+
+  /* Testimonials */
+  .testimonial-text {
+    font-size: 0.8rem;
+  }
+
+  .parent-info h4 {
+    font-size: 0.8rem;
+  }
+}
+
 @media screen and (max-width: 968px) {
    /* Responsive Design for all section styles on all webpage*/
    .section-title {
     font-size: 2rem;
-}
+    margin-bottom: 2rem;
+   }
+
+ .section {
+   padding: 3.5rem 5%;
+ }
 
   /*hero slider for home.html*/
     .slide-title {
-font-size: 2rem;
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
   
     .slide-description {
-font-size: 1.1rem;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
     }
+    
     .hero-content h1 {
-font-size: 2.5rem;
-      }
+      font-size: 2.5rem;
+    }
     
    /*stats section for home.html, about.html, and facilities.html*/
    .stats {
@@ -2856,7 +3597,15 @@ font-size: 2.5rem;
      gap: 1rem;
      padding: 5rem 5%;
      color: white;
- }  
+   }
+   
+   .stat-number {
+     font-size: 1.8rem;
+   }
+   
+   .stat-item p {
+     font-size: 0.85rem;
+   }
  
  /* Responsive Design principal on about.html  */
  .principal-message {
@@ -2894,6 +3643,30 @@ font-size: 2.5rem;
 .column {
   width: 100%;
   padding: 1rem;
+}
+
+ /* Facilities page text on tablets */
+ .stats .stat-number {
+   font-size: 2rem;
+ }
+
+ .stats .stat-item p {
+   font-size: 0.95rem;
+ }
+
+ .f-container .facility-card h3 {
+   font-size: 1.25rem;
+ }
+
+ .f-container .facility-card p {
+   font-size: 0.95rem;
+ }
+
+/* Scroll buttons position on tablets */
+.gallery-wrapper .scroll-buttons {
+  top: auto;
+  bottom: 1.5rem;
+  transform: none;
 }
 
 /* Responsive layout for news container */
@@ -2985,6 +3758,22 @@ font-size: 2.5rem;
 
 /* Responsive Design  for 768px and below */
 @media (max-width: 768px) {
+  /* Global text sizes for tablet */
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .content-text h2,
+  .principal-content h2 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
   /* Responsive Design for main navigation styles on all webpage*/
     .nav-links {
         position: fixed;
@@ -3047,6 +3836,21 @@ font-size: 2.5rem;
       font-size: 2.5rem;
   } 
 
+  .stat-number {
+    font-size: 1.8rem;
+  }
+
+  .stat-item p {
+    font-size: 0.85rem;
+  }
+
+  .facility-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .facility-card p {
+    font-size: 0.85rem;
+  }
 
       /* Responsive Design for stats section on home.html, about.html, and facilities.html*/
       .stats {
@@ -3064,18 +3868,43 @@ font-size: 2.5rem;
         gap: 2rem;
       }
 
-      /* Responsive Design for breadcrumbs on all pades except home.html*/
+      /* News/article detail cards */
+      .n-container {
+        margin: 2.5rem auto;
+        padding: 0 1.25rem;
+      }
+
+      .n-card {
+        padding: 1.75rem;
+      }
+
+      .n-card h2 {
+        font-size: 1.5rem;
+      }
+
+      .n-card p {
+        font-size: 0.95rem;
+      }
+
+      /* Responsive Design for breadcrumbs on all pages except home.html (tablets)*/
+      .breadcrumb {
+        padding: 12px 5%;
+      }
+
       .breadcrumb-container {
-        justify-content: center; /* Center items on smaller screens */
-        gap:1px; /* Reduce gap between items */
+        justify-content: flex-start;
+        gap: 6px;
+        flex-wrap: wrap;
       }
     
-      .breadcrumb a {
-        font-size: 0.8rem; /* Reduce font size for smaller screens */
-      }
-    
+      .breadcrumb a,
       .breadcrumb span {
-        font-size: 0.8rem; /* Reduce font size for smaller screens */
+        font-size: 0.9rem;
+      }
+
+      .breadcrumb i {
+        font-size: 0.7rem;
+        margin: 0 2px;
       }
 
       /* Responsive Design for contact cards on home.html and contact.html*/
@@ -3143,48 +3972,6 @@ font-size: 2.5rem;
         font-size: 1rem;
         line-height: 1.5;
       }
-      .scroll-item {
-        width: 250px;
-        height: 350px;
-    }
-
-    .scroll-buttons {
-        padding: 0 0.5rem;
-    }
-
-    .scroll-btn {
-        width: 40px;
-        height: 40px;
-    }
-
-
-     /* Make cards bigger on small devices */
-     .card {
-      width: 100%;
-      margin-bottom: 2rem;
-    }
-    
-    .card img {
-      height: 250px;
-    }
-    
-    .card h2 {
-      font-size: 1.7rem;
-    }
-    
-    .card p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-    }
-    
-    .card .meta {
-      font-size: 1rem;
-    }
-    
-    .read-more {
-      font-size: 1.1rem;
-      padding: 0.5rem 0;
-    }
 
 /* Responsive Design for foooter  */
 .footer-grid {
@@ -3202,6 +3989,35 @@ font-size: 2.5rem;
 
 .social-links {
   justify-content: center; /* Center social links */
+  padding-left: 0;
+}
+
+/* Card text on small devices */
+.card {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.card img {
+  height: 230px;
+}
+
+.card h2 {
+  font-size: 1.4rem;
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.card .meta {
+  font-size: 0.85rem;
+}
+
+.read-more {
+  font-size: 0.95rem;
+  padding: 0.4rem 0;
 }
 
 /* Follow Us Section Responsive Styles */
@@ -3300,6 +4116,37 @@ font-size: 2.5rem;
 }
 
 @media screen and (max-width: 576px) {
+  /* Global text sizes for mobile */
+  .section-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  h3 {
+    font-size: 0.95rem;
+  }
+
+  p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .card h2 {
+    font-size: 1.2rem;
+  }
+
+  .card p {
+    font-size: 0.8rem;
+  }
+
+  .card .meta {
+    font-size: 0.75rem;
+  }
+
   /*responsive design for logo on all webpage*/
   .logo {
     font-size: 1.5rem; /* Further reduce font size for very small screens */
@@ -3317,16 +4164,16 @@ font-size: 2.5rem;
   }
 
   .slide-title {
-    font-size: 2rem; /* Further reduce font size for titles */
+    font-size: 1.2rem; /* Further reduce font size for titles */
   }
 
   .slide-description {
-    font-size: 1rem; /* Further reduce font size for descriptions */
+    font-size: 0.8rem; /* Further reduce font size for descriptions */
   }
 
   .slide-btn {
     padding: 0.6rem 1.5rem; /* Further adjust button padding */
-    font-size: 1rem; /* Further reduce button font size */
+    font-size: 0.9rem; /* Further reduce button font size */
   }
 
   .slider-dot {
@@ -3337,7 +4184,7 @@ font-size: 2.5rem;
   /*Responsive design for history, mission and vision on home.html */
   .tab-btn {
     padding: 8px 12px; /* Further reduce padding */
-    font-size: 0.75rem; /* Further reduce font size */
+    font-size: 0.7rem; /* Further reduce font size */
   }
 
   .tab-btn i {
@@ -3345,7 +4192,15 @@ font-size: 2.5rem;
   }
 
   .content-text h2 {
-    font-size: 1.2rem; /* Reduce heading size */
+    font-size: 1.1rem; /* Reduce heading size */
+  }
+
+  .stat-number {
+    font-size: 1.4rem;
+  }
+
+  .stat-item p {
+    font-size: 0.75rem;
   }
 
   .content-image img {
@@ -3359,7 +4214,7 @@ font-size: 2.5rem;
   }
 
   .news-content h3 {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   
   /* Responsive Design for facilities cards styles on home.html, facilities.html*/
@@ -3377,11 +4232,17 @@ font-size: 2.5rem;
   }
 
   .facility-card h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .facility-card p {
-    font-size: 1rem;
+    font-size: 0.85rem;
+  }
+
+  /* Compact buttons on very small screens */
+  button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
   }
 
   /* Responsive Design for contact cards on home.html and contact.html*/
@@ -3403,24 +4264,125 @@ font-size: 2.5rem;
     font-size: 1rem;
   }
 
-   /* Responsive Design for breadcrumbs styles on all webpage except home.html**/
-   .breadcrumb-container {
-    flex-direction: column; /* Stack items vertically on very small screens */
-    align-items: flex-start; /* Align items to the left */
+  /* Further adjust scroll buttons on very small screens (< 576px) */
+  .scroll-container {
+    padding: 2rem 0 0 0;
   }
 
-  .breadcrumb a,
-  .breadcrumb span {
-    font-size: 0.9rem; /* Further reduce font size */
+  .scroll-buttons {
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 0.1rem;
   }
+
+  .scroll-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
+
+  .scroll-btn i {
+    font-size: 0.7rem;
+  }
+
+  /* Facilities page text on small phones */
+  .stats .stat-number {
+    font-size: 1.6rem;
+  }
+
+  .stats .stat-item p {
+    font-size: 0.85rem;
+  }
+
+  .f-container .facility-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .f-container .facility-card p {
+    font-size: 0.9rem;
+  }
+
+  /* News search layout on very small screens */
+  .widget-1 {
+    margin: 1.25rem 1rem 1.75rem;
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(66, 153, 225, 0.15);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  }
+
+  .widget-1 h3 {
+    font-size: 1rem;
+  }
+
+  .news-container {
+    padding: 1.5rem 1.25rem;
+    gap: 1.5rem;
+  }
+
+  /* Smaller, but inline, search controls on extra-small screens */
+  .search-box input[type="search"] {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.6rem;
+    min-height: 40px;
+  }
+
+  .search-box button {
+    font-size: 0.9rem;
+    padding: 0 0.6rem;
+    min-height: 40px; /* slightly smaller but still tappable */
+  }
+
+   /* Responsive Design for breadcrumbs styles on all webpage except home.html (mobile <576px)*/
+   .breadcrumb {
+    padding: 10px 3%;
+    background: linear-gradient(135deg, rgba(74, 111, 220, 0.05) 0%, rgba(66, 153, 225, 0.05) 100%);
+   }
+
+   .breadcrumb-container {
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: flex-start;
+   }
+
+   .breadcrumb i {
+    display: none; /* Hide chevron icons on mobile */
+   }
+
+   .breadcrumb a,
+   .breadcrumb span {
+    font-size: 0.75rem;
+    padding: 3px 4px;
+    display: inline-block;
+   }
+
+   .breadcrumb a::before {
+    content: '•';
+    margin-right: 4px;
+    color: var(--secondary);
+    opacity: 0.5;
+   }
+
+   .breadcrumb a:first-child::before {
+    content: '';
+    margin: 0;
+   }
+
+   .breadcrumb span::before {
+    content: '•';
+    margin-right: 4px;
+    color: var(--secondary);
+    opacity: 0.5;
+   }
 
   /* Responsive Design for principal message on about.html*/
   .principal-content h2 {
-    font-size: 20px;
+    font-size: 1.5rem;
   }
 
   .principal-content p {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .principal-image {
@@ -3530,6 +4492,11 @@ font-size: 2.5rem;
 
   .social-links {
     justify-content: center; /* Center social links */
+    padding-left: 0;
   }
+  
+  .footer-links {
+    padding-left: 0;
+    text-align: center;
 }
-
+}

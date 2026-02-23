@@ -223,17 +223,31 @@ document.querySelectorAll('.gallery-wrapper').forEach(gallery => {
     progressDots[0].classList.add('active');
   }
 
+  // Get scroll distance dynamically (item width + gap)
+  // Default: 300px (item) + 32px (2rem gap) = 332px
+  const getScrollDistance = () => {
+    const firstItem = scrollItems[0];
+    if (!firstItem) return 332;
+    const itemWidth = firstItem.offsetWidth;
+    // Get computed gap from scroll-content
+    const computedStyle = window.getComputedStyle(scrollContent);
+    const gap = parseFloat(computedStyle.gap) || 32;
+    return itemWidth + gap;
+  };
+
+  const scrollDistance = getScrollDistance();
+
   // Scroll buttons functionality
   prevBtn.addEventListener('click', () => {
     scrollContent.scrollBy({
-      left: -320,
+      left: -scrollDistance,
       behavior: 'smooth'
     });
   });
 
   nextBtn.addEventListener('click', () => {
     scrollContent.scrollBy({
-      left: 320,
+      left: scrollDistance,
       behavior: 'smooth'
     });
   });
