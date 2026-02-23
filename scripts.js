@@ -143,21 +143,30 @@ document.addEventListener('DOMContentLoaded', function () {
     const icon = themeToggle.querySelector('i');
 
     if (icon) {
+      const applyTheme = (isDark) => {
+        document.body.classList.toggle('dark-mode', isDark);
+        icon.classList.replace(isDark ? 'fa-moon' : 'fa-sun', isDark ? 'fa-sun' : 'fa-moon');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      };
+
       // Check for saved theme preference
       if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-        icon.classList.replace('fa-moon', 'fa-sun');
+        applyTheme(true);
       }
 
-      themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
+      const toggleTheme = () => {
+        const isDark = !document.body.classList.contains('dark-mode');
+        applyTheme(isDark);
+      };
 
-        if (document.body.classList.contains('dark-mode')) {
-          icon.classList.replace('fa-moon', 'fa-sun');
-          localStorage.setItem('theme', 'dark');
-        } else {
-          icon.classList.replace('fa-sun', 'fa-moon');
-          localStorage.setItem('theme', 'light');
+      themeToggle.setAttribute('role', 'button');
+      themeToggle.setAttribute('tabindex', '0');
+      themeToggle.setAttribute('aria-label', 'Toggle dark mode');
+      themeToggle.addEventListener('pointerup', toggleTheme);
+      themeToggle.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleTheme();
         }
       });
     }

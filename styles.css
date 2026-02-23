@@ -217,7 +217,7 @@ img {
     font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 2rem;
-    text-shadow: var(--shadow)
+    text-shadow: var(--shadow);
 }
 
 .slide-btn{
@@ -2735,10 +2735,23 @@ button {
     z-index: 1000;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .theme-toggle:hover {
     background: var(--secondary);
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    width: 44px;
+    height: 44px;
+    right: calc(12px + env(safe-area-inset-right));
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    z-index: 1100;
+  }
 }
 
 
