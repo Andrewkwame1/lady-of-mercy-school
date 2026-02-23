@@ -1,27 +1,93 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Initialize AOS
-  AOS.init({
-    duration: 1000,
-    once: true
-  });
+  const addAccessibleNamesToIconLinks = () => {
+    const platformByClass = [
+      ['fa-facebook-f', 'Facebook'],
+      ['fa-facebook', 'Facebook'],
+      ['fa-youtube', 'YouTube'],
+      ['fa-instagram', 'Instagram'],
+      ['fa-tiktok', 'TikTok'],
+      ['fa-linkedin-in', 'LinkedIn'],
+      ['fa-linkedin', 'LinkedIn'],
+      ['fa-whatsapp', 'WhatsApp']
+    ];
 
-  // Initialize Particles.js
-  if (document.getElementById('particles-js')) {
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 80 },
-        color: { value: "#ffffff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        move: {
-          speed: 3,
-          direction: "none",
-          random: true
-        }
+    document.querySelectorAll('a').forEach((anchor) => {
+      const hasVisibleText = (anchor.textContent || '').trim().length > 0;
+      if (hasVisibleText || anchor.getAttribute('aria-label')) return;
+
+      const icon = anchor.querySelector('i');
+      if (!icon) return;
+
+      const foundPlatform = platformByClass.find(([className]) => icon.classList.contains(className));
+      if (!foundPlatform) return;
+
+      const platform = foundPlatform[1];
+      anchor.setAttribute('aria-label', platform);
+      if (!anchor.getAttribute('title')) {
+        anchor.setAttribute('title', platform);
       }
     });
-  }
+  };
+
+  addAccessibleNamesToIconLinks();
+
+  const scheduleNonCritical = window.requestIdleCallback
+    ? window.requestIdleCallback
+    : (callback) => setTimeout(callback, 1);
+
+  const loadExternalScript = (src) => {
+    return new Promise((resolve) => {
+      if (document.querySelector(`script[src="${src}"]`)) {
+        resolve();
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.defer = true;
+      script.onload = () => resolve();
+      script.onerror = () => resolve();
+      document.body.appendChild(script);
+    });
+  };
+
+  scheduleNonCritical(async () => {
+    const needsParticles = !!document.getElementById('particles-js');
+
+    await Promise.all([
+      loadExternalScript('https://unpkg.com/aos@2.3.1/dist/aos.js'),
+      needsParticles
+        ? loadExternalScript('https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js')
+        : Promise.resolve()
+    ]);
+
+    // Initialize AOS
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 1000,
+        once: true
+      });
+    }
+
+    // Initialize Particles.js
+    if (document.getElementById('particles-js') && typeof particlesJS === 'function') {
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 80 },
+          color: { value: "#ffffff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5 },
+          size: { value: 3 },
+          move: {
+            speed: 3,
+            direction: "none",
+            random: true
+          }
+        }
+      });
+    }
+  });
 
   // Hero Slider
   let currentSlide = 0; // Start with the first slide (index 0)
@@ -955,14 +1021,14 @@ function initSearchFeature() {
             <h3>Filter Results</h3>
             <div class="filter-options">
                 <div class="filter-group">
-                    <label>Category:</label>
-                    <select class="category-filter">
+            <label for="category-filter">Category:</label>
+            <select id="category-filter" class="category-filter" aria-label="Category filter">
                         <option value="">All Categories</option>
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label>Date Range:</label>
-                    <select class="date-filter">
+            <label for="date-filter">Date Range:</label>
+            <select id="date-filter" class="date-filter" aria-label="Date range filter">
                         <option value="">All Time</option>
                         <option value="7">Last 7 Days</option>
                         <option value="30">Last 30 Days</option>
@@ -979,8 +1045,8 @@ function initSearchFeature() {
     const sortOptions = document.createElement('div');
     sortOptions.className = 'sort-options';
     sortOptions.innerHTML = `
-            <label>Sort by:</label>
-            <select class="sort-select">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select" class="sort-select" aria-label="Sort results">
                 <option value="newest">Newest First</option>
                 <option value="oldest">Oldest First</option>
                 <option value="relevance">Relevance</option>
@@ -1362,4 +1428,12 @@ function initSearchFeature() {
     const results = filterResults(searchTerm);
     displaySearchResults(results, searchTerm);
   }
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {
+      // Silent fail for unsupported/blocked environments.
+    });
+  });
 }
